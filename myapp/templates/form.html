@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="order" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if data %}
+        <p>{{ data.fname }} {{ data.lname }}, проверьте адрес доставки:</p>
+        <p>{{ data.country }}</p>
+        <p>{{ data.city }}</p>
+        <p>{{ data.street }}</p>
+        <p>{{ data.num_of_home }}</p>
+        <p>{{ data.num_of_flat }}</p>
+    {% endif %}
+</body>
+</html>
